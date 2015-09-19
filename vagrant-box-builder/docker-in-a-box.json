@@ -1,0 +1,74 @@
+{
+  "variables": {
+    "ubuntu_installer_path": null,
+    "ubuntu_installer_md5": null,
+    "output": "ubuntu-server-amd64-docker.box"
+  },
+
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "guest_os_type": "Ubuntu_64",
+      "iso_url": "{{user `ubuntu_installer_path`}}",
+      "iso_checksum": "{{user `ubuntu_installer_md5`}}",
+      "iso_checksum_type": "md5",
+      "ssh_username": "root",
+      "ssh_password": "root",
+      "ssh_wait_timeout": "30m",
+      "hard_drive_interface": "sata",
+      "disk_size": "4000",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/{{.Version}}/VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_additions_mode": "upload",
+      "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
+      "headless": "true",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "2048"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"],
+        ["modifyvm", "{{.Name}}", "--vram", "24"],
+        ["modifyvm", "{{.Name}}", "--nic1", "nat"],
+        ["modifyvm", "{{.Name}}", "--nictype1", "Am79C970A"],
+        ["modifyvm", "{{.Name}}", "--cableconnected1", "on"],
+        ["modifyvm", "{{.Name}}", "--macaddress1", "0800276CC271"],
+        ["modifyvm", "{{.Name}}", "--nicpromisc1", "deny"]
+      ],
+      "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": "sed -i 's/^mesg n$/tty -s \\&\\& mesg n/g' /root/.profile"
+    },
+    {
+      "type": "file",
+      "source": "contrib/vagrant.pub",
+      "destination": "/tmp/vagrant.pub"
+    },
+    {
+      "type": "shell",
+      "script": "provision/vagrant-user.sh"
+    },
+    {
+      "type": "shell",
+      "script": "provision/vbox-guestadditions.sh"
+    },
+    {
+      "type": "shell",
+      "inline": "wget -qO- https://get.docker.com/ | sh"
+    }
+  ],
+
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "compression_level": 1,
+      "override": {
+        "vmware": {
+          "compression_level": 0
+        }
+      },
+      "output": "{{user `output`}}"
+    }
+  ]
+}

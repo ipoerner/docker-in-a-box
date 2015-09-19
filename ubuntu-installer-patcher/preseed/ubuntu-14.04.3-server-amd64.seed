@@ -1,0 +1,73 @@
+d-i debian-installer/locale string en_US.UTF-8
+
+# keyboard layout
+d-i console-setup/ask_detect boolean false
+d-i keyboard-configuration/modelcode  string  pc105
+d-i keyboard-configuration/layoutcode string de
+d-i keyboard-configuration/xkb-keymap select de
+d-i keyboard-configuration/variantcode  string  nodeadkeys
+
+# networking
+netcfg netcfg/get_hostname string ubuntu-server-amd64
+netcfg netcfg/get_domain string ubuntu-server-amd64
+netcfg netcfg/choose_interface select auto
+netcfg netcfg/wireless_wep string
+
+# clock & time
+d-i time/zone string US/Pacific
+clock-setup clock-setup/utc-auto boolean true
+clock-setup clock-setup/utc boolean true
+clock-setup clock-setup/ntp boolean true
+
+# mirrors
+choose-mirror-bin mirror/country string US
+choose-mirror-bin mirror/http/proxy string
+
+# partitioning
+partman-auto partman-auto/method string regular
+partman-auto partman-auto/choose_recipe select /lib/partman/recipes/30atomic
+partman-partitioning partman-partitioning/confirm_write_new_label boolean true
+partman-base partman/choose_partition select finish
+partman-base partman/confirm boolean true
+partman-base partman/confirm_nooverwrite boolean true
+
+# users
+user-setup-udeb passwd/root-login boolean true
+user-setup-udeb passwd/root-password password root
+user-setup-udeb passwd/root-password-again password root
+
+user-setup-udeb passwd/make-user boolean false
+#user-setup-udeb passwd/make-user boolean true
+#user-setup-udeb passwd/user-fullname string Vagrant
+#user-setup-udeb passwd/username string vagrant
+#user-setup-udeb passwd/user-password password vagrant
+#user-setup-udeb passwd/user-password-again password vagrant
+
+user-setup-udeb user-setup/allow-password-weak boolean true
+user-setup-udeb user-setup/encrypt-home boolean false
+
+# base system
+base-installer base-installer/install-recommends boolean false
+#base-installer base-installer/kernel/override-image string linux-server
+
+# package management
+d-i tasksel/first multiselect OpenSSH server
+pkgsel pkgsel/update-policy select none
+pkgsel pkgsel/upgrade select safe-upgrade
+d-i pkgsel/install-language-support boolean false
+
+# boot loader
+grub-installer grub-installer/make_active  boolean true
+grub-installer grub-installer/bootdev  string  
+grub-installer grub-installer/only_debian boolean true
+grub-installer grub-installer/with_other_os boolean true
+grub-installer grub-installer/multipath  boolean true
+grub-installer grub-installer/grub2_instead_of_grub_legacy boolean false
+
+d-i finish-install/keep-consoles boolean true
+d-i cdrom-detect/eject boolean false
+d-i debian-installer/add-kernel-opts string vga=788 console=tty0
+finish-install finish-install/reboot_in_progress note
+#d-i debian-installer/exit/poweroff boolean false
+
+d-i preseed/late_command string in-target sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
