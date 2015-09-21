@@ -41,6 +41,10 @@
       "inline": "sed -i 's/^mesg n$/tty -s \\&\\& mesg n/g' /root/.profile"
     },
     {
+      "type": "shell",
+      "script": "provision/vbox-guestadditions.sh"
+    },
+    {
       "type": "file",
       "source": "contrib/vagrant.pub",
       "destination": "/tmp/vagrant.pub"
@@ -51,11 +55,7 @@
     },
     {
       "type": "shell",
-      "script": "provision/vbox-guestadditions.sh"
-    },
-    {
-      "type": "shell",
-      "inline": "wget -qO- https://get.docker.com/ | sh"
+      "script": "provision/docker.sh"
     }
   ],
 
