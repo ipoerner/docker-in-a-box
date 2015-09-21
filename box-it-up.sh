@@ -1,10 +1,11 @@
 #!/bin/sh
 
 set -e
+set -x
 
 container_cleanup() {
     container_id=$(docker ps --all --quiet --filter "name=${1}")
-    if ! [ -z "${container_entry}" ]; then
+    if ! [ -z "${container_id}" ]; then
         docker rm --force --volumes ${container_id}
     fi
 }
