@@ -2,6 +2,8 @@
 
 set -e
 
+OUTPUT_TARGET="${PWD}/output"
+
 container_cleanup() {
     container_id=$(docker ps --all --quiet --filter "name=${1}")
     if ! [ -z "${container_id}" ]; then
@@ -55,7 +57,7 @@ done
         --name build-vagrant-box \
         --privileged \
         --rm \
-        --volume $(pwd)/output:/mnt/output \
+        --volume "${OUTPUT_TARGET}:/mnt/output" \
         --volumes-from patch-ubuntu-installer \
         vagrant-box-builder \
         || cleanup_all
