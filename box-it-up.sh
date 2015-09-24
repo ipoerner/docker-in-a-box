@@ -2,6 +2,8 @@
 
 set -e
 
+PROVISION_EXTRA_SOURCE="provision_extra"
+PROVISION_EXTRA_TARGET="vagrant-box-builder/provision/extra"
 OUTPUT_TARGET="${PWD}/output"
 
 container_cleanup() {
@@ -37,11 +39,10 @@ cleanup_all
         || cleanup_all
 )
 
-PROVISION_EXTRA_DIRECTORY="vagrant-box-builder/provision/extra"
-rm -rf "${PROVISION_EXTRA_DIRECTORY}"
-mkdir -p "${PROVISION_EXTRA_DIRECTORY}"
-for file in $(ls provision_extra/*.sh 2> /dev/null); do
-    cp -f "provision_extra/${file}" "${PROVISION_EXTRA_DIRECTORY}"
+rm -rf "${PROVISION_EXTRA_TARGET}"
+mkdir -p "${PROVISION_EXTRA_TARGET}"
+for file in $(ls ${PROVISION_EXTRA_SOURCE}/*.sh 2> /dev/null); do
+    cp -f "${PROVISION_EXTRA_SOURCE}/${file}" "${PROVISION_EXTRA_TARGET}"
 done
 
 (
