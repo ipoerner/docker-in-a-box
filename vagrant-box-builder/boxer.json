@@ -2,7 +2,7 @@
   "variables": {
     "ubuntu_installer_path": null,
     "ubuntu_installer_md5": null,
-    "output": "ubuntu-server-amd64-docker.box"
+    "output": "ubuntu-server-amd64-custom.box"
   },
 
   "builders": [
