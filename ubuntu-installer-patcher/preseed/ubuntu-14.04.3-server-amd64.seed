@@ -14,7 +14,7 @@ netcfg netcfg/choose_interface select auto
 netcfg netcfg/wireless_wep string
 
 # clock & time
-d-i time/zone string US/Pacific
+time time/zone string US/Pacific
 clock-setup clock-setup/utc-auto boolean true
 clock-setup clock-setup/utc boolean true
 clock-setup clock-setup/ntp boolean true
@@ -51,10 +51,11 @@ base-installer base-installer/install-recommends boolean false
 #base-installer base-installer/kernel/override-image string linux-server
 
 # package management
-d-i tasksel/first multiselect OpenSSH server
+tasksel tasksel/first multiselect standard
+pkgsel pkgsel/include string openssh-server
 pkgsel pkgsel/update-policy select none
 pkgsel pkgsel/upgrade select safe-upgrade
-d-i pkgsel/install-language-support boolean false
+pkgsel pkgsel/install-language-support boolean false
 
 # boot loader
 grub-installer grub-installer/make_active  boolean true
@@ -67,7 +68,7 @@ grub-installer grub-installer/grub2_instead_of_grub_legacy boolean false
 d-i finish-install/keep-consoles boolean true
 d-i cdrom-detect/eject boolean false
 d-i debian-installer/add-kernel-opts string vga=788 console=tty0
-finish-install finish-install/reboot_in_progress note
+d-i finish-install/reboot_in_progress note
 #d-i debian-installer/exit/poweroff boolean false
 
 d-i preseed/late_command string in-target sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
