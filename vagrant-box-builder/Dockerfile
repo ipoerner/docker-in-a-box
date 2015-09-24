@@ -49,13 +49,15 @@ ENV VAGRANT_BOX_PATH /usr/share/vagrant-box-build
 RUN rm -rf ${VAGRANT_BOX_PATH} && \
     mkdir -p ${VAGRANT_BOX_PATH} && \
     mkdir ${VAGRANT_BOX_PATH}/contrib && \
-    mkdir ${VAGRANT_BOX_PATH}/provision
+    mkdir ${VAGRANT_BOX_PATH}/provision && \
+    mkdir ${VAGRANT_BOX_PATH}/provision/extra
 RUN curl --show-error \
         --insecure \
         --location \
         --output ${VAGRANT_BOX_PATH}/contrib/vagrant.pub \
         https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
-COPY provision/* ${VAGRANT_BOX_PATH}/provision/
+COPY provision ${VAGRANT_BOX_PATH}/provision/
+COPY provision/extra ${VAGRANT_BOX_PATH}/provision/extra/
 COPY docker-in-a-box.json ${VAGRANT_BOX_PATH}/
 
 ENV PACKER_WORKDIR /mnt/vagrant-box-build

@@ -32,6 +32,13 @@ cleanup_all
         || cleanup_all
 )
 
+PROVISION_EXTRA_DIRECTORY="vagrant-box-builder/provision/extra"
+rm -rf "${PROVISION_EXTRA_DIRECTORY}"
+mkdir -p "${PROVISION_EXTRA_DIRECTORY}"
+for file in $(ls provision_extra/*.sh 2> /dev/null); do
+    cp -f "provision_extra/${file}" "${PROVISION_EXTRA_DIRECTORY}"
+done
+
 (
     cd vagrant-box-builder
 
