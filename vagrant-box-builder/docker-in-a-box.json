@@ -52,10 +52,6 @@
     {
       "type": "shell",
       "script": "provision/vagrant-user.sh"
-    },
-    {
-      "type": "shell",
-      "script": "provision/docker.sh"
     }
   ],
 
