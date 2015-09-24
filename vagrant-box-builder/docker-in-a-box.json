@@ -16,7 +16,7 @@
       "ssh_password": "root",
       "ssh_wait_timeout": "30m",
       "hard_drive_interface": "sata",
-      "disk_size": "4000",
+      "disk_size": "8000",
       "guest_additions_url": "http://download.virtualbox.org/virtualbox/{{.Version}}/VBoxGuestAdditions_{{.Version}}.iso",
       "guest_additions_mode": "upload",
       "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
