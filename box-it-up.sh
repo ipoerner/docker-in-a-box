@@ -1,7 +1,6 @@
 #!/bin/sh
 
 set -e
-set -x
 
 container_cleanup() {
     container_id=$(docker ps --all --quiet --filter "name=${1}")
