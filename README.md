@@ -75,6 +75,6 @@ Please see [LICENSE](/LICENSE) for licensing details.
 
 [https://packer.io/](https://packer.io)
 
-[https://vagrantup.com](https://vagrantup.com/)
-
 [https://www.virtualbox.org](https://www.virtualbox.org)
+
+[https://docker.io](https://docker.io)
