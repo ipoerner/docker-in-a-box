@@ -1,8 +1,8 @@
 # Grow a Box
 
 Patches a vanilla Ubuntu installer image with a preseed file that takes care of
-automating the installation process and then live-provisions a mint VM to become
-a proper Vagrant box.
+automating the installation process and then live-provisions a new VM to become
+a Vagrant box.
 
 Currently uses Ubuntu 14.04.3 amd64 server as a base. VirtualBox is used as a
 provider for Vagrant.
@@ -11,14 +11,14 @@ provider for Vagrant.
 
 Sometimes you need to build a base box to be used with Vagrant entirely from
 scratch. Not based upon some untrusted public base box, or a hand-crafted VM
-that cannot easily be updated or modified.
+that cannot easily be updated or shared.
 
 Under the premise that you're working with VirtualBox as a provider for Vagrant
 and Ubuntu is your OS of choice, preseeding comes as a natural choice for
 automating the installation process.
 
-Future versions may add support for other OS and different providers. I'd always
-be happy about contributions of any kind!
+Future versions of this... tool may add support for other OS and different
+providers. I'd be happy to see contributions of any kind!
 
 ## Usage
 
@@ -31,8 +31,8 @@ All you need to do is to invoke:
 
 ... and wait :-)
 
-With any luck, you'll end up with a Docker container that looks as if it's stuck
-at:
+With any luck, you'll end up with a Docker container that appears as if it's
+stuck at:
 
     [...]
     ==> virtualbox-iso: Waiting 10s for boot...
@@ -42,7 +42,7 @@ at:
 This is VirtualBox running the Ubuntu install process in headless mode, which
 means that you don't get to see any output for a short while.
 
-You'll see more progress being made eventually, so don't worry – how long it
+You will see more progress being made eventually, so don't worry – how long it
 takes exactly really depends on how powerful your workstation is.
 
 The timeout value for this operation is set to 30 minutes, but usually it
@@ -54,9 +54,9 @@ inside the `output/` directory.
 ## Customization
 
 You may want to have some additional commands be invoked as a final provisioning
-step. In order to achieve that, just put any number of scripts in the
-`provision_extra` directory. Make sure that your script names do not start with
-a dot and have the `.sh` file extension, otherwise they will be ignored.
+step. In order to achieve that, just put any number of scripts to be executed in
+the `provision_extra` directory. Make sure that your script names do not start
+with a dot and have the `.sh` file extension, otherwise they will be ignored.
 
 ## Troubleshooting
 
