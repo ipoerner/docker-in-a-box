@@ -58,7 +58,7 @@ RUN curl --show-error \
         https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
 COPY provision ${VAGRANT_BOX_PATH}/provision/
 COPY provision/extra ${VAGRANT_BOX_PATH}/provision/extra/
-COPY boxer.json ${VAGRANT_BOX_PATH}/
+COPY grow-a-box.json ${VAGRANT_BOX_PATH}/
 
 ENV PACKER_WORKDIR /mnt/vagrant-box-build
 VOLUME ${PACKER_WORKDIR}

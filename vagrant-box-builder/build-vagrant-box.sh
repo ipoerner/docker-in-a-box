@@ -14,4 +14,4 @@ packer build \
     -var "ubuntu_installer_path=${ubuntu_installer_path}" \
     -var "ubuntu_installer_md5=${ubuntu_installer_md5}" \
     -var "output=${output}" \
-    boxer.json
+    grow-a-box.json
