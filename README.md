@@ -15,10 +15,11 @@ that cannot easily be updated or shared.
 
 Under the premise that you're working with VirtualBox as a provider for Vagrant
 and Ubuntu is your OS of choice, preseeding comes as a natural choice for
-automating the installation process.
+automating the installation process. When a new Ubuntu release comes around, you
+want to be able to switch seamlessly without any manual steps involved.
 
-Future versions of this... tool may add support for other OS and different
-providers. I'd be happy to see contributions of any kind!
+Future versions of this tool may add support for other OS and different
+providers. Please feel inspired! I'd be happy to see contributions of any kind!
 
 ## Usage
 
