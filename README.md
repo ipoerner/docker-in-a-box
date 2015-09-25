@@ -1,8 +1,8 @@
 # Grow a Box
 
 Patches a vanilla Ubuntu installer image with a preseed file that takes care of
-auomating the installation process and then uses this patched image to
-live-provision a new VM to become a Vagrant box.
+automating the installation process and then live-provisions a mint VM to become
+a proper Vagrant box.
 
 Currently uses Ubuntu 14.04.3 amd64 server as a base. VirtualBox is used as a
 provider for Vagrant.
@@ -82,6 +82,9 @@ Please see [LICENSE](/LICENSE) for licensing details.
 ## Links
 
 [https://vagrantup.com](https://vagrantup.com)
+
 [https://packer.io/](https://packer.io)
+
 [https://vagrantup.com](https://vagrantup.com/)
+
 [https://www.virtualbox.org](https://www.virtualbox.org)
