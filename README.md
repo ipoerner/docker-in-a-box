@@ -53,7 +53,7 @@ complete.
 Once the script returned, you'll find that the resulting `.box` file was stored
 inside the `output/` directory.
 
-*Note:* If you're not part of the `docker` group, the tool must be run with
+**Note:** If you're not part of the `docker` group, the tool must be run with
 superuser privileges:
 
     $ sudo ./plant-and-wait
@@ -73,7 +73,7 @@ Please see [LICENSE](/LICENSE) for licensing details.
 
 [https://vagrantup.com](https://vagrantup.com)
 
-[https://packer.io/](https://packer.io)
+[https://packer.io](https://packer.io)
 
 [https://www.virtualbox.org](https://www.virtualbox.org)
 
