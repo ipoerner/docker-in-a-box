@@ -47,7 +47,8 @@ You will see more progress being made eventually, so don't worry – how long it
 takes exactly really depends on how powerful your workstation is.
 
 The timeout value for this operation is set to 30 minutes, but usually it
-shouldn't take more than a couple of minutes on any halfway decent system.
+shouldn't take more than a couple of minutes on any halfway decent system to
+complete.
 
 Once the script returned, you'll find that the resulting `.box` file was stored
 inside the `output/` directory.
@@ -55,13 +56,13 @@ inside the `output/` directory.
 ## Customization
 
 You may want to have some additional commands be invoked as a final provisioning
-step. In order to achieve that, just put any number of scripts to be executed in
-the `provision_extra` directory. Make sure that your script names do not start
-with a dot and have the `.sh` file extension, otherwise they will be ignored.
+step. In order to achieve that, just put any number of scripts in the
+`provision_extra` directory. Make sure that your script names do not start with
+a dot and have the `.sh` file extension, otherwise they will be ignored.
 
 ## Troubleshooting
 
-If you are not part of the `docker` group, the tool must be run with superuser
+If you're not part of the `docker` group, the tool must be run with superuser
 privileges:
 
     $ sudo ./plant-and-wait
