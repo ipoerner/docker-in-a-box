@@ -17,8 +17,9 @@ container_cleanup() {
 }
 
 cleanup_all() {
-    container_cleanup "build-vagrant-box"
-    container_cleanup "patch-ubuntu-installer"
+    for name in "patch-ubuntu-installer" "build-vagrant-box"; do
+         container_cleanup "${name}"
+    done
 }
 
 cleanup_all

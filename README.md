@@ -53,29 +53,17 @@ complete.
 Once the script returned, you'll find that the resulting `.box` file was stored
 inside the `output/` directory.
 
+*Note:* If you're not part of the `docker` group, the tool must be run with
+superuser privileges:
+
+    $ sudo ./plant-and-wait
+
 ## Customization
 
 You may want to have some additional commands be invoked as a final provisioning
 step. In order to achieve that, just put any number of scripts in the
 `provision_extra` directory. Make sure that your script names do not start with
 a dot and have the `.sh` file extension, otherwise they will be ignored.
-
-## Troubleshooting
-
-If you're not part of the `docker` group, the tool must be run with superuser
-privileges:
-
-    $ sudo ./plant-and-wait
-
-Just in case the process fails or gets interrupted, make sure you remove any
-dangling zombie containers with the `--volumes` option before giving it a new
-shot, i.e.:
-
-    $ for name in patch-ubuntu-installer build-vagrant-box; do
-    $     docker ps --all --quiet --filter "name=$name" | xargs docker rm --force --volumes
-    $ done
-
-Sorry for the inconvenience!
 
 ## License
 
