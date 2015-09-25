@@ -1,10 +1,24 @@
 # Grow a Box
 
-Patches an existing Ubuntu installer image with a custom preseed file and uses
-that image to provision a new Vagrant box file.
+Patches a vanilla Ubuntu installer image with a preseed file that takes care of
+auomating the installation process and then uses this patched image to
+live-provision a new VM to become a Vagrant box.
 
 Currently uses Ubuntu 14.04.3 amd64 server as a base. VirtualBox is used as a
 provider for Vagrant.
+
+## Motivation
+
+Sometimes you need to build a base box to be used with Vagrant entirely from
+scratch. Not based upon some untrusted public base box, or a hand-crafted VM
+that cannot easily be updated or modified.
+
+Under the premise that you're working with VirtualBox as a provider for Vagrant
+and Ubuntu is your OS of choice, preseeding comes as a natural choice for
+automating the installation process.
+
+Future versions may add support for other OS and different providers. I'd always
+be happy about contributions of any kind!
 
 ## Usage
 
@@ -25,23 +39,24 @@ at:
     ==> virtualbox-iso: Typing the boot command...
     ==> virtualbox-iso: Waiting for SSH to become available...
 
-This means that VirtualBox is running the Ubuntu install process in headless
-mode, which means that you don't get to see any output for a while.
+This is VirtualBox running the Ubuntu install process in headless mode, which
+means that you don't get to see any output for a short while.
 
-Depending on how powerful your workstation is, you'll see more progress being
-made sooner or later, so don't worry. The timeout value for this operation is
-set to 30 minutes, but it usually takes only a couple of minutes on any halfway
-decent system.
+You'll see more progress being made eventually, so don't worry – how long it
+takes exactly really depends on how powerful your workstation is.
 
-Once the script returned, you'll find that the resulting `.box` file can be
-found in the `output/` directory.
+The timeout value for this operation is set to 30 minutes, but usually it
+shouldn't take more than a couple of minutes on any halfway decent system.
+
+Once the script returned, you'll find that the resulting `.box` file was stored
+inside the `output/` directory.
 
 ## Customization
 
-You may want to have some additional commands to be invoked as a final
-provisioning step. In order to acchieve that, just put any number of scripts in
-the `provision_extra` directory. Make sure that your script names do not start
-with a dot and have the `.sh` file extension, otherwise they will be ignored.
+You may want to have some additional commands be invoked as a final provisioning
+step. In order to achieve that, just put any number of scripts in the
+`provision_extra` directory. Make sure that your script names do not start with
+a dot and have the `.sh` file extension, otherwise they will be ignored.
 
 ## Troubleshooting
 
